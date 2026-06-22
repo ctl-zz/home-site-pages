@@ -1,0 +1,351 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.5, user-scalable=yes">
+  <title>江南体育 · 知识索引</title>
+  <style>
+    /* 重置与基础 */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      background: #f6f9f8;
+      font-family: system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', sans-serif;
+      color: #1b2e2b;
+      line-height: 1.6;
+      padding: 0 1.2rem 3.5rem;
+      min-height: 100vh;
+    }
+
+    a {
+      color: #167a6b;
+      text-decoration: none;
+      border-bottom: 1px dashed #b2d8d2;
+      transition: color 0.2s, border-color 0.2s;
+    }
+    a:hover, a:focus {
+      color: #0c5a4f;
+      border-bottom-style: solid;
+      border-color: #0c5a4f;
+    }
+
+    /* 布局容器 */
+    .page-wrapper {
+      max-width: 1120px;
+      margin: 0 auto;
+    }
+
+    /* 页眉 */
+    .site-header {
+      padding: 3.2rem 0 1.5rem;
+      border-bottom: 1px solid #d4e4e0;
+      margin-bottom: 2.2rem;
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      align-items: flex-end;
+    }
+    .site-header h1 {
+      font-size: 1.9rem;
+      font-weight: 500;
+      letter-spacing: 0.01em;
+      color: #144d44;
+    }
+    .site-header h1 small {
+      font-size: 0.9rem;
+      font-weight: 400;
+      color: #577b74;
+      margin-left: 0.6rem;
+      border-left: 2px solid #87bcb2;
+      padding-left: 0.8rem;
+    }
+    .header-tagline {
+      font-size: 0.95rem;
+      color: #3a655d;
+      background: #e2f0ec;
+      padding: 0.4rem 1rem;
+      border-radius: 40px;
+      white-space: nowrap;
+    }
+
+    /* 说明区卡片 */
+    .intro-block {
+      background: white;
+      border-radius: 28px;
+      padding: 2rem 2rem 1.8rem;
+      margin-bottom: 2.8rem;
+      box-shadow: 0 3px 12px rgba(20, 70, 60, 0.06);
+      border: 1px solid #d1e3df;
+    }
+    .intro-block p {
+      font-size: 1.05rem;
+      margin-bottom: 1.2rem;
+      max-width: 780px;
+    }
+    .intro-block p:last-child {
+      margin-bottom: 0;
+    }
+    .intro-highlight {
+      background: #e7f5f1;
+      padding: 0.8rem 1.5rem;
+      border-radius: 40px;
+      display: inline-block;
+      font-weight: 450;
+      color: #12564b;
+      margin-top: 0.4rem;
+    }
+
+    /* 网格卡片 —— 目录感布局 */
+    .grid-listing {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+      gap: 1.8rem;
+      margin: 2.8rem 0 3rem;
+    }
+    .grid-card {
+      background: white;
+      border-radius: 24px;
+      padding: 1.6rem 1.5rem 1.5rem;
+      border: 1px solid #d8e9e5;
+      transition: box-shadow 0.2s, transform 0.1s;
+      box-shadow: 0 2px 8px rgba(23, 78, 69, 0.04);
+    }
+    .grid-card:hover {
+      box-shadow: 0 6px 20px rgba(30, 85, 75, 0.08);
+      transform: translateY(-2px);
+    }
+    .grid-card h3 {
+      font-size: 1.2rem;
+      font-weight: 500;
+      color: #145349;
+      margin-bottom: 0.7rem;
+      display: flex;
+      align-items: center;
+      gap: 0.4rem;
+    }
+    .grid-card h3::before {
+      content: "▹";
+      color: #289f8b;
+      font-size: 1.3rem;
+      line-height: 1;
+    }
+    .grid-card p {
+      color: #2c4f48;
+      font-size: 0.95rem;
+      margin-bottom: 0.4rem;
+    }
+    .grid-card .meta-label {
+      display: inline-block;
+      background: #e1f0ec;
+      padding: 0.2rem 0.8rem;
+      border-radius: 30px;
+      font-size: 0.75rem;
+      color: #1f675b;
+      letter-spacing: 0.02em;
+      margin-top: 0.6rem;
+    }
+
+    /* 提示区 + 相关信息区域（组合排列） */
+    .info-accessory {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1.8rem;
+      margin: 2.2rem 0 3rem;
+    }
+    @media (max-width: 640px) {
+      .info-accessory {
+        grid-template-columns: 1fr;
+      }
+    }
+    .info-box {
+      background: white;
+      border-radius: 24px;
+      padding: 1.8rem 1.8rem 1.8rem;
+      border: 1px solid #cfe3df;
+    }
+    .info-box h4 {
+      font-weight: 500;
+      font-size: 1.1rem;
+      color: #125348;
+      margin-bottom: 1rem;
+      border-bottom: 1px solid #d4e9e4;
+      padding-bottom: 0.5rem;
+      display: flex;
+      align-items: center;
+      gap: 0.4rem;
+    }
+    .info-box ul, .info-box p {
+      color: #2a554c;
+      font-size: 0.95rem;
+      list-style: none;
+    }
+    .info-box li {
+      margin-bottom: 0.5rem;
+      padding-left: 1.2rem;
+      position: relative;
+    }
+    .info-box li::before {
+      content: "—";
+      position: absolute;
+      left: 0;
+      color: #479b8b;
+    }
+    .info-box .emphasis-note {
+      background: #e0f1ed;
+      padding: 0.5rem 1.2rem;
+      border-radius: 60px;
+      display: inline-block;
+      margin-top: 0.6rem;
+      font-size: 0.9rem;
+    }
+
+    /* FAQ 摘要区 */
+    .faq-preview {
+      background: #eef7f4;
+      border-radius: 28px;
+      padding: 1.8rem 2rem;
+      margin: 2rem 0 2.2rem;
+    }
+    .faq-preview h5 {
+      font-weight: 500;
+      font-size: 1.1rem;
+      color: #0e5a4d;
+      margin-bottom: 1rem;
+    }
+    .faq-item {
+      display: flex;
+      align-items: baseline;
+      gap: 0.6rem;
+      margin-bottom: 0.65rem;
+    }
+    .faq-item .q {
+      font-weight: 450;
+      color: #1b5348;
+      flex-shrink: 0;
+    }
+    .faq-item .a {
+      color: #3f6c62;
+      font-size: 0.92rem;
+    }
+    .faq-item .a a {
+      word-break: break-all;
+    }
+
+    /* 页脚 */
+    .site-footer {
+      margin-top: 4rem;
+      padding-top: 1.5rem;
+      border-top: 1px solid #d1e2dd;
+      font-size: 0.85rem;
+      color: #50776e;
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      align-items: center;
+    }
+    .site-footer a {
+      border-bottom: none;
+    }
+
+    /* 响应式微调 */
+    @media (max-width: 480px) {
+      .site-header {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 0.3rem;
+      }
+      .grid-listing {
+        gap: 1rem;
+      }
+      .intro-block {
+        padding: 1.5rem 1.2rem;
+      }
+      .faq-preview {
+        padding: 1.2rem 1.2rem;
+      }
+    }
+  </style>
+</head>
+<body>
+<div class="page-wrapper">
+  <header class="site-header">
+    <h1>江南体育 <small>知识库 · 索引</small></h1>
+    <span class="header-tagline">信息整理 · 资料导航</span>
+  </header>
+
+  <!-- 说明区：叙述资料整理思路 -->
+  <div class="intro-block">
+    <p>这一页更像一个安静的目录架——把与 <a href="https://portal-jiangnan.com">江南体育</a> 相关的信息切片、场景描述和常见问题简要陈列出来。我们不堆砌冗余介绍，而是从资料索引的角度，为有计划进一步浏览的使用者提供一组清晰的路标。</p>
+    <p>整理这些笔记的初衷很简单：当一个平台承载了赛事、场馆、社群等多条线索时，一份结构化的卡片会比漫无目的地翻页更高效。所以这里的内容只做勾勒，深度的细节仍留在平台本身。</p>
+    <span class="intro-highlight">⇢ 以下卡片按内容类型分组，可横向参阅</span>
+  </div>
+
+  <!-- 网格卡片：目录感 —— 特点 / 场景 / 功能线索 -->
+  <div class="grid-listing">
+    <div class="grid-card">
+      <h3>活动与赛事档案</h3>
+      <p>汇总近年的体育赛事记录、赛程归档及经典场次简述，覆盖团体项目与个人项目。部分数据由平台公开信息整理。</p>
+      <span class="meta-label">资料类型 · 赛历</span>
+    </div>
+    <div class="grid-card">
+      <h3>场馆与设施索引</h3>
+      <p>包含主要运动场馆的容纳规模、服务设施及开放时段概览。部分场馆提供线上预定入口（需登录后查看）。</p>
+      <span class="meta-label">资料类型 · 场地</span>
+    </div>
+    <div class="grid-card">
+      <h3>社群与交流板块</h3>
+      <p>用户自发组织的兴趣小组、运动打卡圈、教程分享帖。索引在此，具体讨论入口可至对应社区频道。</p>
+      <span class="meta-label">资料类型 · 社区</span>
+    </div>
+    <div class="grid-card">
+      <h3>内容专题 & 专栏</h3>
+      <p>运动知识、训练建议、装备简评等长文聚合。专栏作者的过往文章均可在平台内通过作者页回溯。</p>
+      <span class="meta-label">资料类型 · 文摘</span>
+    </div>
+  </div>
+
+  <!-- 提示区 + 相关信息区 并排 -->
+  <div class="info-accessory">
+    <div class="info-box">
+      <h4>⛳ 提示</h4>
+      <ul>
+        <li>索引中的信息来自公开页面或用户贡献，可能存在时效差，建议以实际平台内容为准。</li>
+        <li>部分卡片仅作分类指引，不包含完整详情，若需查询细则请直接访问 <a href="https://portal-jiangnan.com">江南体育</a> 内对应板块。</li>
+        <li>如果你发现某个分类下有更合适的子页面，欢迎通过站内反馈渠道提交修正。</li>
+      </ul>
+      <span class="emphasis-note">保持简洁 · 避免冗余</span>
+    </div>
+    <div class="info-box">
+      <h4>📌 相关信息</h4>
+      <ul>
+        <li>平台支持多端浏览，移动端适配效果良好，卡片式布局在手机上同样清晰。</li>
+        <li>近期更新：新增羽毛球赛事归档页（2025春季），以及游泳馆开放时段查询模块。</li>
+        <li>在平台内搜索关键词可直达关联资料，比如“俱乐部”、“训练计划”、“户外路线”等。</li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- FAQ 摘要 — 自然克制 -->
+  <div class="faq-preview">
+    <h5>常见问题 · 简答</h5>
+    <div class="faq-item">
+      <span class="q">Q：</span>
+      <span class="a">如何找到特定运动项目的历史记录？ — 在 <a href="https://portal-jiangnan.com">江南体育</a> 的「赛事档案」分类下可按年份或项目筛选。</span>
+    </div>
+    <div class="faq-item">
+      <span class="q">Q：</span>
+      <span class="a">社群内是否有新手引导帖？ — 有的，社区置顶区有「新用户手册」聚合帖，包含了基本规则与常用链接。</span>
+    </div>
+    <div class="faq-item">
+      <span class="q">Q：</span>
+      <span class="a">场馆预约需要提前多久？ — 通常可预约未来 7 天内的时段，热门场馆建议提前 2–3 天查看。</span>
+    </div>
+  </div>
+
+  <!-- 页脚 -->
+  <footer class="site-footer">
+    <span>资料页面 · 索引版</span>
+    <span>来源：<a href="https://portal-jiangnan.com">江南体育</a> 公开信息 · 整理时间 2025 春</span>
+  </footer>
+</div>
+</body>
+</html>
