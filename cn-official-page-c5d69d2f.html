@@ -1,0 +1,347 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>江南体育 · 场景与知识</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Roboto, 'Helvetica Neue', sans-serif;
+            background-color: #f5f6fa;
+            color: #2d3436;
+            line-height: 1.7;
+        }
+
+        /* ---------- 深色头图 ---------- */
+        .hero {
+            background: linear-gradient(145deg, #0b1a2e 0%, #1a2f44 100%);
+            color: #e8edf2;
+            padding: 3.5rem 2rem 4rem 2rem;
+            text-align: center;
+            position: relative;
+        }
+
+        .hero h1 {
+            font-size: 2.8rem;
+            font-weight: 400;
+            letter-spacing: 0.08rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .hero h1 span {
+            font-weight: 600;
+            color: #f9ca24;
+        }
+
+        .hero p {
+            max-width: 720px;
+            margin: 1rem auto 0 auto;
+            font-size: 1.1rem;
+            opacity: 0.85;
+            font-weight: 300;
+        }
+
+        /* ---------- 导航条 ---------- */
+        .top-nav {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 2rem 3rem;
+            padding: 1rem 2rem 0.5rem 2rem;
+            background: #0b1a2e;
+            border-bottom: 1px solid #2a4055;
+        }
+
+        .top-nav a {
+            color: #bdc9db;
+            text-decoration: none;
+            font-size: 0.95rem;
+            padding: 0.3rem 0;
+            border-bottom: 2px solid transparent;
+            transition: 0.2s;
+            letter-spacing: 0.03rem;
+        }
+
+        .top-nav a:hover {
+            color: #f9ca24;
+            border-bottom-color: #f9ca24;
+        }
+
+        /* ---------- 浅色正文 ---------- */
+        .content-wrapper {
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 2rem 1.5rem 3rem 1.5rem;
+        }
+
+        .intro-block {
+            background: #ffffff;
+            border-radius: 24px;
+            padding: 2.5rem 2.8rem;
+            margin: 2rem 0 2.5rem 0;
+            box-shadow: 0 8px 20px rgba(0,0,0,0.02);
+        }
+
+        .intro-block h2 {
+            font-size: 1.8rem;
+            font-weight: 500;
+            color: #0b1a2e;
+            margin-bottom: 1.2rem;
+            border-left: 5px solid #f9ca24;
+            padding-left: 1rem;
+        }
+
+        .intro-block p {
+            margin-bottom: 1rem;
+            font-size: 1.02rem;
+        }
+
+        .intro-block a {
+            color: #1a5276;
+            text-decoration: none;
+            border-bottom: 1px dashed #7f8c8d;
+            font-weight: 500;
+            transition: 0.2s;
+        }
+
+        .intro-block a:hover {
+            color: #f39c12;
+            border-bottom-color: #f39c12;
+        }
+
+        /* ---------- 三个场景模块 ---------- */
+        .scene-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+            gap: 1.8rem;
+            margin: 2.5rem 0;
+        }
+
+        .scene-card {
+            background: #ffffff;
+            border-radius: 20px;
+            padding: 2rem 1.6rem;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.02);
+            transition: transform 0.2s ease, box-shadow 0.2s;
+            border: 1px solid #eef0f5;
+        }
+
+        .scene-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 12px 24px rgba(0,0,0,0.06);
+        }
+
+        .scene-card h3 {
+            font-weight: 500;
+            color: #0b1a2e;
+            font-size: 1.4rem;
+            margin-bottom: 1rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .scene-card h3 i {
+            font-style: normal;
+            background: #f9ca24;
+            color: #0b1a2e;
+            font-weight: 600;
+            padding: 0.1rem 0.6rem;
+            border-radius: 40px;
+            font-size: 0.85rem;
+        }
+
+        .scene-card p {
+            color: #3d4a5a;
+            font-size: 0.98rem;
+        }
+
+        /* ---------- 常见说明 (FAQ风格) ---------- */
+        .faq-section {
+            background: #ffffff;
+            border-radius: 24px;
+            padding: 2.4rem 2.8rem;
+            margin: 2.5rem 0;
+            box-shadow: 0 8px 20px rgba(0,0,0,0.02);
+        }
+
+        .faq-section h2 {
+            font-size: 1.8rem;
+            font-weight: 500;
+            color: #0b1a2e;
+            margin-bottom: 1.6rem;
+            border-left: 5px solid #f9ca24;
+            padding-left: 1rem;
+        }
+
+        .faq-item {
+            border-bottom: 1px solid #e3e7ed;
+            padding: 1.2rem 0;
+        }
+
+        .faq-item:last-child {
+            border-bottom: none;
+        }
+
+        .faq-question {
+            font-weight: 600;
+            font-size: 1.05rem;
+            color: #1a2f44;
+            margin-bottom: 0.4rem;
+            display: flex;
+            align-items: center;
+            gap: 0.6rem;
+        }
+
+        .faq-question::before {
+            content: "▹";
+            color: #f9ca24;
+            font-weight: 700;
+        }
+
+        .faq-answer {
+            color: #4a5a6e;
+            padding-left: 1.8rem;
+            font-size: 0.98rem;
+        }
+
+        .faq-answer a {
+            color: #1a5276;
+            text-decoration: none;
+            border-bottom: 1px dotted #95a5a6;
+        }
+
+        .faq-answer a:hover {
+            color: #f39c12;
+            border-bottom-color: #f39c12;
+        }
+
+        /* ---------- 页脚 ---------- */
+        .footer-note {
+            text-align: center;
+            padding: 2rem 1rem;
+            color: #5d6d7e;
+            font-size: 0.9rem;
+            border-top: 1px solid #d5dbe6;
+            margin-top: 1rem;
+        }
+
+        .footer-note a {
+            color: #1a5276;
+            text-decoration: none;
+        }
+
+        .footer-note a:hover {
+            text-decoration: underline;
+        }
+
+        /* ---------- 响应式 ---------- */
+        @media (max-width: 600px) {
+            .hero h1 {
+                font-size: 2rem;
+            }
+
+            .hero p {
+                font-size: 1rem;
+            }
+
+            .top-nav {
+                gap: 1rem 1.5rem;
+                padding: 0.8rem 1rem 0.4rem 1rem;
+            }
+
+            .intro-block,
+            .faq-section {
+                padding: 1.8rem 1.2rem;
+            }
+
+            .scene-card {
+                padding: 1.5rem 1.2rem;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- 顶部导航 -->
+    <div class="top-nav">
+        <a href="#">主题</a>
+        <a href="#">知识</a>
+        <a href="#">场景</a>
+        <a href="#">说明</a>
+        <a href="#">动态</a>
+    </div>
+
+    <!-- 深色头图 -->
+    <header class="hero">
+        <h1>从<span>江南体育</span>看运动场景</h1>
+        <p>理解体育文化如何融入日常生活，观察运动形态在不同空间中的自然生长。</p>
+    </header>
+
+    <!-- 核心介绍 + 三个场景模块 + 常见说明 -->
+    <div class="content-wrapper">
+
+        <!-- 核心介绍 -->
+        <section class="intro-block">
+            <h2>运动·场域·日常</h2>
+            <p>体育不仅是竞技，更是一种空间叙事。当我们将视线投向江南地域，会发现体育场景与自然、社区、城市肌理紧密交织。无论是传统武术的庭院传承，还是现代健身的滨水绿道，运动正在重塑人们感知环境的方式。</p>
+            <p>在多元的运动生态中，<a href="https://cn-official-jiangnan.com">江南体育</a>作为一个观察样本，展现了活动组织、场地适配与参与者习惯之间的微妙平衡。从清晨的太极到夜晚的夜跑，每一个时间切片都折射出体育生活的内在规律。</p>
+            <p>理解这些场景，需要跳出单纯的数据罗列，转而关注人与空间之间的动态关系。下文将从三个典型模块展开，解析体育行为背后的环境逻辑。</p>
+        </section>
+
+        <!-- 三个场景模块 -->
+        <div class="scene-grid">
+            <div class="scene-card">
+                <h3>水岸运动 <i>01</i></h3>
+                <p>湖泊、河道与体育设施的结合，催生出骑行、划艇、沿岸拉伸等低干扰项目。水体调节微气候，让运动体感更舒适，同时也自然形成了动静分区。</p>
+            </div>
+            <div class="scene-card">
+                <h3>庭院与广场 <i>02</i></h3>
+                <p>传统围合空间被赋予新功能：拉伸、器械、非正式球类。地面材质与阴影覆盖影响了活动类型，而邻里互动则让这些场地成为社交枢纽。</p>
+            </div>
+            <div class="scene-card">
+                <h3>立体连接带 <i>03</i></h3>
+                <p>高架桥下、屋顶平台、建筑连廊——被忽视的边角经过微改造，变成跑酷、攀爬、平衡训练的场所。高差本身成为训练变量，丰富了运动层次。</p>
+            </div>
+        </div>
+
+        <!-- 常见说明 -->
+        <section class="faq-section">
+            <h2>常见说明</h2>
+
+            <div class="faq-item">
+                <div class="faq-question">这些场景是否有统一的运营主体？</div>
+                <div class="faq-answer">大多数场景由社区、体育协会或小型俱乐部自发维护。像<a href="https://cn-official-jiangnan.com">江南体育</a>这类平台会提供场地指引、活动信息以及基础协调服务，但并非单一主体管控。</div>
+            </div>
+
+            <div class="faq-item">
+                <div class="faq-question">如何选择适合自己的运动空间？</div>
+                <div class="faq-answer">建议先明确运动类型与时段偏好。亲水场地适合早晨或傍晚，立体连接带受天气影响小，庭院广场则更依赖邻里作息。实际体验后更容易找到节奏。</div>
+            </div>
+
+            <div class="faq-item">
+                <div class="faq-question">是否会向公众收取场地费用？</div>
+                <div class="faq-answer">绝大多数提及的场地属于公共空间或半公共空间，免费开放。部分改建项目会设置低偿使用时段，用于维护设备。具体收费标准可在相关公告中查询。</div>
+            </div>
+
+            <div class="faq-item">
+                <div class="faq-question">运动安全与应急措施如何？</div>
+                <div class="faq-answer">各场景基本配备简易急救点或联络装置。水岸运动建议结伴，立体连接带需注意防滑。平台方会定期发布安全提示，参与者自身也应有基础防护意识。</div>
+            </div>
+        </section>
+
+    </div>
+
+    <!-- 页脚 -->
+    <div class="footer-note">
+        基于真实场景观察 · 信息仅供参考 · <a href="https://cn-official-jiangnan.com">江南体育</a>
+    </div>
+
+</body>
+</html>
